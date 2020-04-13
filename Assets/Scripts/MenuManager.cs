@@ -22,6 +22,8 @@ public class MenuManager : MonoBehaviour
 
     public Button ShopUmbrella;
 
+   
+
     // Start is called before the first frame update
     void Start()
     {
@@ -40,6 +42,15 @@ public class MenuManager : MonoBehaviour
             inventoryUmbrella.SetActive(true);
         }
 
+        if (wearUmbrella == true)
+        {
+            UsedUmbrella.SetActive(true);
+        }
+
+        if (wearUmbrella == false)
+        {
+            UsedUmbrella.SetActive(false);
+        }
         
 
         if (goldCount >= 1 && ownUmbrella == false)
@@ -67,7 +78,7 @@ public class MenuManager : MonoBehaviour
         }
     }
 
-    public void CLoseNav()
+    public void CloseNav()
     {
         simplenav.SetBool("Open", false);
         Time.timeScale = 1;
@@ -84,6 +95,13 @@ public class MenuManager : MonoBehaviour
         inventoryholder.SetBool("Open", false);
     }
 
+    public void BuyUmbrella()
+    {
+        goldCount -= 1;
+        PlayerPrefs.SetInt("Umbrella", 1);
+        ShopUmbrella.interactable = false;
+        ownUmbrella = true;
+    }
 
     public void UseUmbrella()
     {
